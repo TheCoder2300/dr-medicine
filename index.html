@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Medicine | 100% Uncertified Satire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <div class="bg-red-600 text-white text-center py-2 text-sm font-bold uppercase tracking-widest">
+        ⚠️ Warning: This site provides zero real medical advice. If you are dying, call a real doctor.
+    </div>
+
+    <nav class="p-6 flex justify-between items-center border-b bg-white">
+        <div class="flex items-center gap-2">
+            <i data-lucide="stethoscrop" class="text-blue-600"></i>
+            <span class="text-2xl font-black tracking-tighter italic">DR. MEDICINE</span>
+        </div>
+        <div class="hidden md:flex gap-6 font-medium">
+            <a href="#" class="hover:text-blue-600">The Lab</a>
+            <a href="#" class="hover:text-blue-600">Placebos</a>
+            <a href="#" class="hover:text-blue-600">Insurance (LOL)</a>
+        </div>
+    </nav>
+
+    <header class="max-w-4xl mx-auto py-20 px-6 text-center">
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Medical advice from a <span class="text-blue-600 underline">Large Language Model</span>.</h1>
+        <p class="text-xl text-slate-600 mb-8">We don't have degrees, but we do have a very fast internet connection and a lot of confidence.</p>
+        <button onclick="document.getElementById('checker').scrollIntoView({behavior: 'smooth'})" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition-all">Start Self-Diagnosis</button>
+    </header>
+
+    <section id="checker" class="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-xl border mb-20">
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+            <i data-lucide="activity"></i> AI Symptom Checker
+        </h2>
+        <p class="mb-6 text-slate-500">Enter your symptoms and we'll tell you why it's probably because you didn't drink enough water in 2014.</p>
+        
+        <input id="symptomInput" type="text" placeholder="e.g. My elbow feels spicy..." class="w-full p-4 border rounded-xl mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
+        
+        <button onclick="diagnose()" class="w-full bg-slate-900 text-white p-4 rounded-xl font-bold hover:bg-slate-800">Analyze My Fate</button>
+
+        <div id="result" class="hidden mt-8 p-6 bg-blue-50 border border-blue-100 rounded-xl">
+            <p id="diagnosisText" class="text-lg font-medium italic text-blue-900"></p>
+            <div id="prescription" class="mt-4 pt-4 border-t border-blue-200">
+                <span class="text-xs font-bold uppercase text-blue-400">Prescription:</span>
+                <p id="prescriptionText" class="text-slate-700 font-bold"></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 px-6 text-center">
+        <p>© 2026 Dr. Medicine. No rights reserved. This is a joke.</p>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        const diagnoses = [
+            "Your skeleton is just bored and wants to go for a walk without you.",
+            "You have a classic case of 'Too Much Internet.' Side effects include thinking every sneeze is a rare Victorian disease.",
+            "That's not a medical issue; you're just becoming a werewolf. It happens to the best of us.",
+            "You have 'Ghost in the Blood.' We recommend doing a 360-degree spin and shouting 'NOT TODAY' at a pigeon.",
+            "Diagnosis: You are actually 3 raccoons in a trench coat. Please return to the dumpster."
+        ];
+
+        const prescriptions = [
+            "Stare at a blank wall for 40 minutes while listening to whale sounds played at 2x speed.",
+            "Drink exactly 4 drops of organic rainwater and delete your Twitter account.",
+            "Hold a potato against your forehead until it learns your secrets.",
+            "Try turning your personality off and then back on again.",
+            "A 10-day retreat to a cave with no Wi-Fi and only a single copy of 'The Da Vinci Code'."
+        ];
+
+        function diagnose() {
+            const input = document.getElementById('symptomInput').value;
+            if (!input) return alert("Tell me what's wrong, I'm not a psychic. Well, I am, but I'm off the clock.");
+            
+            const resultDiv = document.getElementById('result');
+            const diag = diagnoses[Math.floor(Math.random() * diagnoses.length)];
+            const pres = prescriptions[Math.floor(Math.random() * prescriptions.length)];
+
+            document.getElementById('diagnosisText').innerText = diag;
+            document.getElementById('prescriptionText').innerText = pres;
+            
+            resultDiv.classList.remove('hidden');
+            resultDiv.scrollIntoView({behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
