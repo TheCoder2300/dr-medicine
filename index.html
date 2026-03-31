@@ -3,91 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Medicine | 100% Uncertified Satire</title>
+    <title>DR. MEDICINE | Powered by CureCoin™</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .active-tab { border-bottom: 2px solid #2563eb; color: #2563eb; }
+        .hidden { display: none; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .animate-ticker { animation: ticker 40s linear infinite; white-space: nowrap; }
+        .glitch { animation: pulse 0.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
+<body class="bg-slate-900 text-slate-100 font-sans">
 
-    <div class="bg-red-600 text-white text-center py-2 text-sm font-bold uppercase tracking-widest">
-        ⚠️ Warning: This site provides zero real medical advice. If you are dying, call a real doctor.
+    <div class="bg-yellow-500 text-black text-center py-1 text-[10px] font-black uppercase tracking-tighter sticky top-0 z-50">
+        INVESTMENT ALERT: CURECOIN IS CURRENTLY BACKED BY THE COLLECTIVE WILLPOWER OF SEVEN HAMSTERS.
     </div>
 
-    <nav class="p-6 flex justify-between items-center border-b bg-white">
-        <div class="flex items-center gap-2">
-            <i data-lucide="stethoscrop" class="text-blue-600"></i>
+    <div class="overflow-hidden bg-black text-green-400 py-1 border-y border-slate-800 text-xs font-mono">
+        <div class="animate-ticker">
+            CURECOIN (CUR) UP 4,000% AFTER DR. AL GORITHM TWEETED A PICTURE OF A KALE SALAD... LOCAL MAN CURES HEADACHE BY TURNING OFF HIS ROUTER AND SITTING IN A DARK ROOM... NEW STUDY: DOCTORS PREFER DR. MEDICINE OVER NO DOCTOR AT ALL (MARGIN OF ERROR: 99%)...
+        </div>
+    </div>
+
+    <nav class="p-6 flex flex-col md:flex-row justify-between items-center border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
+        <div class="flex items-center gap-2 cursor-pointer" onclick="showSection('hero')">
+            <i data-lucide="skull" class="text-blue-500"></i>
             <span class="text-2xl font-black tracking-tighter italic">DR. MEDICINE</span>
         </div>
-        <div class="hidden md:flex gap-6 font-medium">
-            <a href="#" class="hover:text-blue-600">The Lab</a>
-            <a href="#" class="hover:text-blue-600">Placebos</a>
-            <a href="#" class="hover:text-blue-600">Insurance (LOL)</a>
+        <div class="flex flex-wrap justify-center gap-6 font-medium mt-4 md:mt-0 text-slate-400">
+            <button onclick="showSection('lab')" class="nav-link hover:text-blue-500 transition">The Lab</button>
+            <button onclick="showSection('placebos')" class="nav-link hover:text-blue-500 transition">Placebos</button>
+            <button onclick="showSection('curecoin')" class="nav-link text-yellow-500 hover:text-yellow-400 font-bold tracking-widest">CURECOIN</button>
+            <button onclick="showSection('portal')" class="bg-blue-600 text-white px-5 py-2 rounded-full font-bold hover:bg-blue-700 transition">Patient Portal</button>
         </div>
     </nav>
 
-    <header class="max-w-4xl mx-auto py-20 px-6 text-center">
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Medical advice from a <span class="text-blue-600 underline">Large Language Model</span>.</h1>
-        <p class="text-xl text-slate-600 mb-8">We don't have degrees, but we do have a very fast internet connection and a lot of confidence.</p>
-        <button onclick="document.getElementById('checker').scrollIntoView({behavior: 'smooth'})" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition-all">Start Self-Diagnosis</button>
-    </header>
-
-    <section id="checker" class="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-xl border mb-20">
-        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
-            <i data-lucide="activity"></i> AI Symptom Checker
-        </h2>
-        <p class="mb-6 text-slate-500">Enter your symptoms and we'll tell you why it's probably because you didn't drink enough water in 2014.</p>
+    <main class="max-w-7xl mx-auto py-12 px-6">
         
-        <input id="symptomInput" type="text" placeholder="e.g. My elbow feels spicy..." class="w-full p-4 border rounded-xl mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
-        
-        <button onclick="diagnose()" class="w-full bg-slate-900 text-white p-4 rounded-xl font-bold hover:bg-slate-800">Analyze My Fate</button>
+        <section id="hero-section" class="text-center py-10">
+            <h1 class="text-6xl font-black mb-6">Your Health, <span class="text-blue-500">Decentralized</span>.</h1>
+            <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto italic">"I'm not a doctor, but I play one on your browser tab."</p>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 text-left shadow-2xl">
+                    <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i data-lucide="cpu" class="text-purple-500"></i> Neural Emoji Scanner</h2>
+                    <p class="text-sm text-slate-500 mb-6">Upload your "vibes" for an instant AI-driven medical report.</p>
+                    <button onclick="simulateAI()" id="ai-btn" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4 rounded-xl font-bold text-lg hover:scale-[1.02] transition-transform">Run Neural Scan</button>
+                    
+                    <div id="ai-result" class="hidden mt-6 p-6 bg-slate-900 border border-slate-700 rounded-xl text-center">
+                        <div id="emoji-cloud" class="text-4xl mb-4 animate-bounce"></div>
+                        <p id="ai-text" class="text-slate-300 font-mono text-sm mb-4"></p>
+                        <div class="p-3 bg-yellow-900/20 border border-yellow-700/50 rounded-lg">
+                            <p class="text-yellow-500 text-xs font-bold uppercase mb-1">Prescription:</p>
+                            <p class="text-yellow-200 text-sm italic">"Purchase 5,000 CureCoin and call us in the morning."</p>
+                        </div>
+                    </div>
+                </div>
 
-        <div id="result" class="hidden mt-8 p-6 bg-blue-50 border border-blue-100 rounded-xl">
-            <p id="diagnosisText" class="text-lg font-medium italic text-blue-900"></p>
-            <div id="prescription" class="mt-4 pt-4 border-t border-blue-200">
-                <span class="text-xs font-bold uppercase text-blue-400">Prescription:</span>
-                <p id="prescriptionText" class="text-slate-700 font-bold"></p>
+                <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 text-left">
+                    <h2 class="text-xl font-bold mb-4">Daily Vague Threats</h2>
+                    <p class="text-sm text-slate-500 mb-6">Sign up for our newsletter. We won't give health tips, but we will send you mysterious coordinates at 3 AM.</p>
+                    <input type="email" placeholder="you@human.com" class="w-full p-4 bg-slate-900 border border-slate-700 rounded-xl mb-4 outline-none focus:border-blue-500">
+                    <button onclick="alert('Legally, you are now our property. Thank you!')" class="w-full border border-slate-700 p-4 rounded-xl font-bold hover:bg-slate-800 transition">Subscribe (Binding)</button>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="bg-slate-900 text-slate-400 py-12 px-6 text-center">
-        <p>© 2026 Dr. Medicine. No rights reserved. This is a joke.</p>
-    </footer>
+        <section id="curecoin-section" class="hidden text-center py-10">
+            <div class="inline-block p-2 px-4 bg-yellow-500/10 border border-yellow-500 text-yellow-500 rounded-full text-xs font-bold mb-6">CRYPTO-HEALTH REVOLUTION</div>
+            <h2 class="text-6xl font-black mb-4">CureCoin <span class="text-yellow-500">$CUR</span></h2>
+            <p class="text-slate-400 mb-12">The only currency that loses value every time you sneeze.</p>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-black p-6 rounded-2xl border border-slate-800">
+                    <p class="text-xs text-slate-500 font-bold uppercase mb-2">Market Cap</p>
+                    <p class="text-3xl font-mono text-white">$14.02 <span class="text-xs text-slate-500">(Total)</span></p>
+                </div>
+                <div class="bg-black p-6 rounded-2xl border border-slate-800">
+                    <p class="text-xs text-slate-500 font-bold uppercase mb-2">Health Index</p>
+                    <p class="text-3xl font-mono text-green-500">STABLE-ISH</p>
+                </div>
+                <div class="bg-black p-6 rounded-2xl border border-slate-800">
+                    <p class="text-xs text-slate-500 font-bold uppercase mb-2">Burn Rate</p>
+                    <p class="text-3xl font-mono text-red-500">SEVERE</p>
+                </div>
+            </div>
+
+            <button onclick="alert('Transaction Failed: Your wallet is too healthy. Go eat some gluten and try again.')" class="bg-yellow-500 text-black px-12 py-5 rounded-full font-black text-2xl hover:bg-yellow-400 transition shadow-[0_0_50px_-12px_rgba(234,179,8,0.5)]">BUY $CUR NOW</button>
+        </section>
+
+        <section id="lab-section" class="hidden">...</section> <section id="placebos-section" class="hidden">...</section>
+        <section id="portal-section" class="hidden">...</section>
+
+    </main>
 
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
 
-        const diagnoses = [
-            "Your skeleton is just bored and wants to go for a walk without you.",
-            "You have a classic case of 'Too Much Internet.' Side effects include thinking every sneeze is a rare Victorian disease.",
-            "That's not a medical issue; you're just becoming a werewolf. It happens to the best of us.",
-            "You have 'Ghost in the Blood.' We recommend doing a 360-degree spin and shouting 'NOT TODAY' at a pigeon.",
-            "Diagnosis: You are actually 3 raccoons in a trench coat. Please return to the dumpster."
-        ];
-
-        const prescriptions = [
-            "Stare at a blank wall for 40 minutes while listening to whale sounds played at 2x speed.",
-            "Drink exactly 4 drops of organic rainwater and delete your Twitter account.",
-            "Hold a potato against your forehead until it learns your secrets.",
-            "Try turning your personality off and then back on again.",
-            "A 10-day retreat to a cave with no Wi-Fi and only a single copy of 'The Da Vinci Code'."
-        ];
-
-        function diagnose() {
-            const input = document.getElementById('symptomInput').value;
-            if (!input) return alert("Tell me what's wrong, I'm not a psychic. Well, I am, but I'm off the clock.");
-            
-            const resultDiv = document.getElementById('result');
-            const diag = diagnoses[Math.floor(Math.random() * diagnoses.length)];
-            const pres = prescriptions[Math.floor(Math.random() * prescriptions.length)];
-
-            document.getElementById('diagnosisText').innerText = diag;
-            document.getElementById('prescriptionText').innerText = pres;
-            
-            resultDiv.classList.remove('hidden');
-            resultDiv.scrollIntoView({behavior: 'smooth'});
+        function showSection(sectionId) {
+            const sections = ['hero', 'lab', 'placebos', 'curecoin', 'portal'];
+            sections.forEach(s => {
+                const el = document.getElementById(s + '-section');
+                if (el) el.classList.add('hidden');
+            });
+            document.getElementById(sectionId + '-section').classList.remove('hidden');
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
+
+        function simulateAI() {
+            const btn = document.getElementById('ai-btn');
+            const res = document.getElementById('ai-result');
+            const emojis = ['🧠', '🩹', '🧪', '🥑', '💀', '👽', '🍔', '🧘', '⚡'];
+            const notes = [
+                "Scan complete: You are 40% coffee by volume.",
+                "Neural link established: You forgot to hydrate in 2019.",
+                "Analysis: Your spirit animal is a very tired pigeon.",
+                "Warning: Too many 'as per my last email' responses detected in blood."
+            ];
+
+            btn.innerText = "Analyzing Vibes...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('emoji-cloud').innerText = 
+                    emojis[Math.floor(Math.random()*emojis.length)] + 
+                    emojis[Math.floor(Math.random()*emojis.length)] + 
+                    emojis[Math.floor(Math.random()*emojis.length)];
+                document.getElementById('ai-text').innerText = notes[Math.floor(Math.random()*notes.length)];
+                res.classList.remove('hidden');
+                btn.innerText = "Re-Scan for $5";
+                btn.disabled = false;
+            }, 1500);
+        }
+
+        // Add the previous logic for Lab, Placebos, etc.
     </script>
 </body>
 </html>
