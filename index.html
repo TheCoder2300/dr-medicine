@@ -7,10 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        .active-tab { border-bottom: 2px solid #2563eb; color: #2563eb; }
+        .active-tab { border-bottom: 2px solid #3b82f6; color: #3b82f6; }
         .hidden { display: none; }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .animate-ticker { animation: ticker 40s linear infinite; white-space: nowrap; }
+        @keyframes pulse-red { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .pulse-insurance { animation: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         .glitch { animation: pulse 0.5s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
     </style>
@@ -21,38 +23,46 @@
         INVESTMENT ALERT: CURECOIN IS CURRENTLY BACKED BY THE COLLECTIVE WILLPOWER OF SEVEN HAMSTERS.
     </div>
 
+    <div class="bg-red-700 text-white text-center py-1 text-[10px] font-bold uppercase tracking-widest sticky top-[24px] z-50">
+        ⚠️ This is a satirical website. Do not take this advice unless you enjoy medical mishaps.
+    </div>
+
     <div class="overflow-hidden bg-black text-green-400 py-1 border-y border-slate-800 text-xs font-mono">
         <div class="animate-ticker">
-            CURECOIN (CUR) UP 4,000% AFTER DR. AL GORITHM TWEETED A PICTURE OF A KALE SALAD... LOCAL MAN CURES HEADACHE BY TURNING OFF HIS ROUTER AND SITTING IN A DARK ROOM... NEW STUDY: DOCTORS PREFER DR. MEDICINE OVER NO DOCTOR AT ALL (MARGIN OF ERROR: 99%)...
+            CURECOIN (CUR) UP 4,000% AFTER DR. AL GORITHM TWEETED A PICTURE OF A KALE SALAD... BREAKING NEWS: Staring at a burrito can cure up to 12% of existential dread... WARNING: Your router might be judging your life choices... LOCAL MAN CURES HEADACHE BY TURNING OFF HIS ROUTER AND SITTING IN A DARK ROOM... 
         </div>
     </div>
 
-    <nav class="p-6 flex flex-col md:flex-row justify-between items-center border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
-        <div class="flex items-center gap-2 cursor-pointer" onclick="showSection('hero')">
+    <nav class="p-4 lg:p-6 flex flex-col lg:flex-row justify-between items-center border-b border-slate-800 bg-slate-950/90 backdrop-blur-md sticky top-[48px] z-40">
+        <div class="flex items-center gap-2 cursor-pointer mb-4 lg:mb-0" onclick="showSection('hero')">
             <i data-lucide="skull" class="text-blue-500"></i>
             <span class="text-2xl font-black tracking-tighter italic">DR. MEDICINE</span>
         </div>
-        <div class="flex flex-wrap justify-center gap-6 font-medium mt-4 md:mt-0 text-slate-400">
+        <div class="flex flex-wrap justify-center gap-4 lg:gap-6 font-medium text-sm lg:text-base text-slate-400">
             <button onclick="showSection('lab')" class="nav-link hover:text-blue-500 transition">The Lab</button>
             <button onclick="showSection('placebos')" class="nav-link hover:text-blue-500 transition">Placebos</button>
+            <button onclick="showSection('doctors')" class="nav-link hover:text-blue-500 transition">The 'Doctors'</button>
+            <button onclick="showSection('insurance')" class="nav-link hover:text-red-500 transition pulse-insurance">Insurance</button>
             <button onclick="showSection('curecoin')" class="nav-link text-yellow-500 hover:text-yellow-400 font-bold tracking-widest">CURECOIN</button>
-            <button onclick="showSection('portal')" class="bg-blue-600 text-white px-5 py-2 rounded-full font-bold hover:bg-blue-700 transition">Patient Portal</button>
+            <button onclick="showSection('portal')" class="bg-blue-600 text-white px-4 py-2 lg:px-5 rounded-full font-bold hover:bg-blue-700 transition">Patient Portal</button>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto py-12 px-6">
+    <main id="main-content" class="max-w-7xl mx-auto py-12 px-6">
         
         <section id="hero-section" class="text-center py-10">
-            <h1 class="text-6xl font-black mb-6">Your Health, <span class="text-blue-500">Decentralized</span>.</h1>
+            <h1 class="text-5xl lg:text-6xl font-black mb-6">Your Health, <span class="text-blue-500">Decentralized</span>.</h1>
             <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto italic">"I'm not a doctor, but I play one on your browser tab."</p>
             
             <div class="grid md:grid-cols-2 gap-8 items-start">
-                <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 text-left shadow-2xl">
-                    <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i data-lucide="cpu" class="text-purple-500"></i> Neural Emoji Scanner</h2>
-                    <p class="text-sm text-slate-500 mb-6">Upload your "vibes" for an instant AI-driven medical report.</p>
-                    <button onclick="simulateAI()" id="ai-btn" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4 rounded-xl font-bold text-lg hover:scale-[1.02] transition-transform">Run Neural Scan</button>
+                
+                <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 text-left shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10"><i data-lucide="brain-circuit" class="w-24 h-24 text-purple-500"></i></div>
+                    <h2 class="text-xl font-bold mb-4 flex items-center gap-2 relative z-10"><i data-lucide="cpu" class="text-purple-500"></i> Neural Emoji Scanner</h2>
+                    <p class="text-sm text-slate-500 mb-6 relative z-10">Upload your "vibes" for an instant AI-driven medical report.</p>
+                    <button onclick="simulateAI()" id="ai-btn" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4 rounded-xl font-bold text-lg hover:scale-[1.02] transition-transform relative z-10">Run Neural Scan</button>
                     
-                    <div id="ai-result" class="hidden mt-6 p-6 bg-slate-900 border border-slate-700 rounded-xl text-center">
+                    <div id="ai-result" class="hidden mt-6 p-6 bg-slate-900 border border-slate-700 rounded-xl text-center relative z-10">
                         <div id="emoji-cloud" class="text-4xl mb-4 animate-bounce"></div>
                         <p id="ai-text" class="text-slate-300 font-mono text-sm mb-4"></p>
                         <div class="p-3 bg-yellow-900/20 border border-yellow-700/50 rounded-lg">
@@ -62,19 +72,126 @@
                     </div>
                 </div>
 
-                <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 text-left">
-                    <h2 class="text-xl font-bold mb-4">Daily Vague Threats</h2>
-                    <p class="text-sm text-slate-500 mb-6">Sign up for our newsletter. We won't give health tips, but we will send you mysterious coordinates at 3 AM.</p>
-                    <input type="email" placeholder="you@human.com" class="w-full p-4 bg-slate-900 border border-slate-700 rounded-xl mb-4 outline-none focus:border-blue-500">
-                    <button onclick="alert('Legally, you are now our property. Thank you!')" class="w-full border border-slate-700 p-4 rounded-xl font-bold hover:bg-slate-800 transition">Subscribe (Binding)</button>
+                <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 text-left shadow-2xl">
+                    <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i data-lucide="zap" class="text-yellow-400"></i> The 'Quick Fix' Generator</h2>
+                    <p class="text-sm text-slate-500 mb-6">Which part of your being is malfunctioning?</p>
+                    <select id="part" class="w-full p-4 border border-slate-700 bg-slate-900 rounded-xl mb-6 text-slate-200 focus:ring-2 focus:ring-blue-500 outline-none">
+                        <option value="Left pinky toe">Left pinky toe</option>
+                        <option value="Existential dread gland">Existential dread gland</option>
+                        <option value="Entire nervous system">Entire nervous system (approx.)</option>
+                        <option value="Boredom">Boredom (Chronic)</option>
+                        <option value="That one spot on your back">That one spot on your back</option>
+                    </select>
+                    <button onclick="quickFix()" class="w-full bg-blue-600 text-white p-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition">Fix It Now</button>
+                    <p id="fix-result" class="mt-6 italic text-blue-300 font-medium text-center bg-blue-950/50 p-4 rounded-lg border border-blue-900 hidden"></p>
                 </div>
+
+            </div>
+
+            <div class="mt-8 bg-slate-950 p-8 rounded-3xl border border-slate-800 text-center max-w-3xl mx-auto">
+                <h2 class="text-xl font-bold mb-2">Daily Vague Threats</h2>
+                <p class="text-sm text-slate-500 mb-6">Sign up for our newsletter. We won't give health tips, but we will send you mysterious coordinates at 3 AM.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="you@human.com" class="flex-1 p-4 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500">
+                    <button onclick="alert('Legally, you are now our property. Thank you!')" class="border border-slate-700 p-4 rounded-xl font-bold hover:bg-slate-800 transition px-8">Subscribe</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="lab-section" class="hidden py-10">
+            <h2 class="text-4xl font-black mb-6">The Lab <span class="text-sm bg-yellow-400 text-black px-2 py-1 rounded align-middle">UNSTABLE</span></h2>
+            <p class="text-lg mb-10 text-slate-400">Where we test theories that real doctors are "too ethical" to try.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 hover:border-blue-500 transition">
+                    <h3 class="font-bold text-xl mb-2 text-blue-400">Project: Bluetooth Hydration</h3>
+                    <p class="text-slate-500 italic">"Why drink water when you can stream it directly to your cells via 5G?"</p>
+                    <p class="mt-4 text-sm text-red-500 text-right font-mono">Status: 404 Water Not Found</p>
+                </div>
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 hover:border-blue-500 transition">
+                    <h3 class="font-bold text-xl mb-2 text-blue-400">Algorithm-Based Sleep</h3>
+                    <p class="text-slate-500 italic">We optimized sleep by deleting Monday mornings from the human calendar. You're welcome.</p>
+                    <p class="mt-4 text-sm text-green-400 text-right font-mono">Status: DEPLOYED (Beta)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="placebos-section" class="hidden py-10">
+            <h2 class="text-4xl font-black mb-6">Our Fine Placebos</h2>
+            <p class="text-lg mb-1 text-slate-400">They don't do anything, but they look great on a bathroom shelf.</p>
+            <p class="text-sm text-red-400 mb-10 italic">Warning: Do not take these with actual medicine. It will be very awkward.</p>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left bg-slate-950 rounded-2xl border border-slate-800 shadow-sm overflow-hidden">
+                    <thead class="bg-slate-800">
+                        <tr>
+                            <th class="p-5 text-slate-300">Product Name</th>
+                            <th class="p-5 text-slate-300">Ingredients</th>
+                            <th class="p-5 text-slate-300">Reported Side Effects</th>
+                            <th class="p-5 text-slate-300">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-400">
+                        <tr class="hover:bg-slate-900 transition">
+                            <td class="p-5 font-bold text-white">Concentrated Air™</td>
+                            <td class="p-5">Oxygen (6%), Confidence (94%)</td>
+                            <td class="p-5">Floating sensations, ego growth.</td>
+                            <td class="p-5 text-blue-400 font-mono">$149.99</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900 transition">
+                            <td class="p-5 font-bold text-white">The "Oops" Pill</td>
+                            <td class="p-5">Just a single, dusty Skittle.</td>
+                            <td class="p-5">Extreme desire for more Skittles.</td>
+                            <td class="p-5 text-blue-400 font-mono">$0.05</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900 transition">
+                            <td class="p-5 font-bold text-white">Liquid Patience</td>
+                            <td class="p-5">Tap water from a library.</td>
+                            <td class="p-5">Slightly improved tolerance for slow Wi-Fi.</td>
+                            <td class="p-5 text-blue-400 font-mono">$85.00</td>
+                        </tr>
+                         <tr class="hover:bg-slate-900 transition">
+                            <td class="p-5 font-bold text-white">Pre-Chewed Gum</td>
+                            <td class="p-5">Your own resilience (approx. 0%).</td>
+                            <td class="p-5">Sticky situation.</td>
+                            <td class="p-5 text-blue-400 font-mono">$2.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="doctors-section" class="hidden py-10">
+            <h2 class="text-4xl font-black mb-10 text-center">Meet Our (Un)Certified 'Doctors'</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 text-center flex flex-col items-center hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://api.dicebear.com/8.x/bottts/svg?seed=Al" class="w-24 h-24 mb-6" alt="Dr. Al Gorithm">
+                    <h3 class="text-2xl font-bold text-blue-400 mb-2">Dr. Al Gorithm</h3>
+                    <p class="text-sm font-bold uppercase text-slate-500 mb-4 flex items-center justify-center gap-1.5"><i data-lucide="headphones" class="w-4 h-4"></i> Diagnosing via Spotify</p>
+                    <p class="text-slate-400 text-sm">"I can tell you exactly why you're sad based on your listening history of '1989' (Taylor's Version)."</p>
+                </div>
+
+                <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 text-center flex flex-col items-center hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://api.dicebear.com/8.x/adventurer/svg?seed=Barb" class="w-24 h-24 mb-6 rounded-full border-4 border-slate-700" alt="Dr. Barb O. Dwyer">
+                    <h3 class="text-2xl font-bold text-blue-400 mb-2">Dr. Barb O. Dwyer</h3>
+                    <p class="text-sm font-bold uppercase text-slate-500 mb-4 flex items-center justify-center gap-1.5"><i data-lucide="megaphone" class="w-4 h-4"></i> SHOUTING THERAPY</p>
+                    <p class="text-slate-400 text-sm">"My methods are loud, but they are effective at making you very, very calm (mostly out of fear)."</p>
+                </div>
+
+                <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 text-center flex flex-col items-center hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://api.dicebear.com/8.x/pixel-art/svg?seed=Hugh" class="w-24 h-24 mb-6 rounded-full" alt="Dr. Hugh Mann">
+                    <h3 class="text-2xl font-bold text-blue-400 mb-2">Dr. Hugh Mann</h3>
+                    <p class="text-sm font-bold uppercase text-slate-500 mb-4 flex items-center justify-center gap-1.5"><i data-lucide="contact" class="w-4 h-4"></i> Is *definitely* human</p>
+                    <p class="text-slate-400 text-sm">"Please do not feed the 'doctor'. His coat is made of 'natural' fibers. I promise."</p>
+                </div>
+
             </div>
         </section>
 
         <section id="curecoin-section" class="hidden text-center py-10">
             <div class="inline-block p-2 px-4 bg-yellow-500/10 border border-yellow-500 text-yellow-500 rounded-full text-xs font-bold mb-6">CRYPTO-HEALTH REVOLUTION</div>
             <h2 class="text-6xl font-black mb-4">CureCoin <span class="text-yellow-500">$CUR</span></h2>
-            <p class="text-slate-400 mb-12">The only currency that loses value every time you sneeze.</p>
+            <p class="text-slate-400 mb-12 max-w-xl mx-auto">The only currency that loses value every time you sneeze.</p>
             
             <div class="grid md:grid-cols-3 gap-6 mb-12">
                 <div class="bg-black p-6 rounded-2xl border border-slate-800">
@@ -87,35 +204,82 @@
                 </div>
                 <div class="bg-black p-6 rounded-2xl border border-slate-800">
                     <p class="text-xs text-slate-500 font-bold uppercase mb-2">Burn Rate</p>
-                    <p class="text-3xl font-mono text-red-500">SEVERE</p>
+                    <p class="text-3xl font-mono text-red-500 glitch">SEVERE</p>
                 </div>
             </div>
 
             <button onclick="alert('Transaction Failed: Your wallet is too healthy. Go eat some gluten and try again.')" class="bg-yellow-500 text-black px-12 py-5 rounded-full font-black text-2xl hover:bg-yellow-400 transition shadow-[0_0_50px_-12px_rgba(234,179,8,0.5)]">BUY $CUR NOW</button>
         </section>
 
-        <section id="lab-section" class="hidden">...</section> <section id="placebos-section" class="hidden">...</section>
-        <section id="portal-section" class="hidden">...</section>
+        <section id="insurance-section" class="hidden text-center py-10">
+            <h2 class="text-5xl lg:text-7xl font-black mb-8 text-red-500 underline decoration-wavy">ACCESS DENIED</h2>
+            <p class="text-2xl font-bold mb-6 text-slate-200">Are you *seriously* trying to use insurance?</p>
+            <p class="max-w-2xl mx-auto text-slate-500 mb-12">Our billing department is currently located on a yacht in international waters. To file a claim, please scream your policy number into a medium-sized mason jar and bury it in your backyard.</p>
+            <div class="inline-block p-10 border-4 border-dashed border-red-900 rounded-3xl opacity-50 relative">
+                <p class="font-mono text-red-600 italic">Searching for "Empathy"... 0 matches found.</p>
+                 <i data-lucide="ban" class="w-16 h-16 text-red-950 absolute -top-8 -right-8 bg-slate-900 rounded-full p-2"></i>
+            </div>
+        </section>
+
+        <section id="portal-section" class="hidden py-10">
+            <div id="portal-login-view" class="max-w-md mx-auto text-center">
+                <i data-lucide="lock" class="w-16 h-16 text-blue-600 mx-auto mb-6"></i>
+                <h2 class="text-4xl font-black mb-8">Patient Portal Login</h2>
+                <input type="text" placeholder="Username (e.g., yourname)" class="w-full p-4 border border-slate-700 bg-slate-950 rounded-xl mb-4 text-slate-200 outline-none focus:border-blue-500">
+                <input type="password" placeholder="Password (e.g., password)" class="w-full p-4 border border-slate-700 bg-slate-950 rounded-xl mb-6 text-slate-200 outline-none focus:border-blue-500">
+                <button onclick="portalLogin()" class="w-full bg-blue-600 text-white p-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition">Access My Data</button>
+            </div>
+
+            <div id="portal-data-view" class="hidden text-center max-w-2xl mx-auto">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2o0N3A1ZnlxMWhmMmN4NTVvMnloOWtyMXdyMmdjdzE1Znl5b3p4diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEdv9m419Vb71c4cE/giphy.gif" class="w-full rounded-2xl mb-10 border-4 border-slate-800 shadow-2xl" alt="Digital Rat">
+                <h2 class="text-4xl lg:text-6xl font-black mb-6 text-red-500 underline">ACCESS GRANTED (LOL)</h2>
+                <p class="text-xl lg:text-2xl font-bold mb-4">Your digital records were eaten by a sophisticated digital lab rat.</p>
+                <p class="text-slate-500 mb-10">We are very sorry. He seems quite happy, though. If you *really* need data, here is a video of a goat.</p>
+                <a href="https://www.youtube.com/watch?v=0hN_WdM_iQY" target="_blank" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition inline-block">View Alternative Data (Goat Video)</a>
+                <p class="mt-8 text-xs text-red-400 italic">Disclaimer: This is the only official patient data we provide.</p>
+            </div>
+        </section>
 
     </main>
 
+    <footer class="text-center py-12 text-slate-600 border-t border-slate-800 mt-20">
+        <p>© 2026 Dr. Medicine. If you're reading this, you're already cured of sanity.</p>
+        <p class="text-xs opacity-50 mt-2"><a href="#" onclick="alert('Your report has been received and will be promptly ignored.'); return false;" class="hover:text-blue-500 transition">Report a Bug (Will be ignored).</a></p>
+    </footer>
+
     <script>
+        // Initialize Icons
         lucide.createIcons();
 
+        // Navigation Logic
         function showSection(sectionId) {
-            const sections = ['hero', 'lab', 'placebos', 'curecoin', 'portal'];
+            const sections = ['hero', 'lab', 'placebos', 'doctors', 'insurance', 'curecoin', 'portal'];
+            
+            // Hide all
             sections.forEach(s => {
                 const el = document.getElementById(s + '-section');
                 if (el) el.classList.add('hidden');
             });
+
+            // Show target
             document.getElementById(sectionId + '-section').classList.remove('hidden');
+
+            // Update active state in nav
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active-tab');
+                if(link.innerText.toLowerCase().includes(sectionId === 'hero' ? 'none' : sectionId.replace('doctors', 'doctor'))) {
+                    link.classList.add('active-tab');
+                }
+            });
+            
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
+        // Neural Scanner Logic
         function simulateAI() {
             const btn = document.getElementById('ai-btn');
             const res = document.getElementById('ai-result');
-            const emojis = ['🧠', '🩹', '🧪', '🥑', '💀', '👽', '🍔', '🧘', '⚡'];
+            const emojis = ['🧠', '🩹', '🧪', '🥑', '💀', '👽', '🍔', '🧘', '⚡', '💊'];
             const notes = [
                 "Scan complete: You are 40% coffee by volume.",
                 "Neural link established: You forgot to hydrate in 2019.",
@@ -125,6 +289,7 @@
 
             btn.innerText = "Analyzing Vibes...";
             btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
 
             setTimeout(() => {
                 document.getElementById('emoji-cloud').innerText = 
@@ -133,12 +298,32 @@
                     emojis[Math.floor(Math.random()*emojis.length)];
                 document.getElementById('ai-text').innerText = notes[Math.floor(Math.random()*notes.length)];
                 res.classList.remove('hidden');
+                
                 btn.innerText = "Re-Scan for $5";
                 btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
             }, 1500);
         }
 
-        // Add the previous logic for Lab, Placebos, etc.
+        // Quick Fix Logic
+        function quickFix() {
+            const part = document.getElementById('part').value;
+            const fixes = [
+                `Ah, the ${part}. Have you tried yelling at it until it feels properly ashamed?`,
+                `For ${part} issues, we recommend wearing a hat on your feet and a sock on your nose.`,
+                `Apply a cold bag of frozen peas to your router. That usually fixes everything eventually.`,
+                `Diagnosis for ${part}: You've been thinking about it too much. Ignore it and it will go away out of spite.`
+            ];
+            const resultDiv = document.getElementById('fix-result');
+            resultDiv.innerText = fixes[Math.floor(Math.random()*fixes.length)];
+            resultDiv.classList.remove('hidden');
+        }
+
+        // Patient Portal Logic
+        function portalLogin() {
+            document.getElementById('portal-login-view').classList.add('hidden');
+            document.getElementById('portal-data-view').classList.remove('hidden');
+        }
     </script>
 </body>
 </html>
